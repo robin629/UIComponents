@@ -11,6 +11,7 @@ public struct UserCard: View {
 	private var firstName: String
 	private var lastName:  String
 	private var userIcon:  Image?
+	private var iconSize:  CGFloat?
 
 	public init(firstName: String, lastName: String, userIcon: Image? = nil) {
 		self.firstName = firstName
@@ -20,7 +21,7 @@ public struct UserCard: View {
 
 	public var body: some View {
 		HStack(spacing: 10) {
-			UserIcon(firstName: firstName, lastName: lastName, userIcon: userIcon)
+			UserIcon(firstName: firstName, lastName: lastName, userIcon: userIcon, iconSize: iconSize)
 
 			VStack(alignment: .leading, spacing: 5) {
 				Text("\(firstName) \(lastName)")
@@ -32,6 +33,16 @@ public struct UserCard: View {
 	}
 }
 
+public extension UserCard {
+	func iconSize(_ size: CGFloat) -> some View {
+		var newView = self
+		
+		newView.iconSize = size
+		
+		return newView
+	}
+}
+
 struct UserCard_Previews: PreviewProvider {
 	struct Preview: View {
 		var body: some View {
@@ -40,7 +51,6 @@ struct UserCard_Previews: PreviewProvider {
 					Section {
 						UserCard(firstName: "Example", lastName: "User")
 						UserCard(firstName: "Robin", lastName: "Israel", userIcon: Image(systemName:  "person.circle.fill"))
-						UserCard(firstName: "Third", lastName: "User")
 					}
 					
 					Text("Example Row")

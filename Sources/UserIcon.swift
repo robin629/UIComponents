@@ -8,17 +8,30 @@
 import SwiftUI
 
 public struct UserIcon: View {
-   private var userIcon: Image?
-   private var initials: String
+	private var iconSize: CGFloat
+	private var userIcon: Image?
+	private var initials: String
    
-	public init(firstName: String, lastName: String, userIcon: Image? = nil) {
-	   self.userIcon = userIcon
-	   
-	   if let firstInital = firstName.first, let lastInital = lastName.first {
-		   initials = "\(String(describing: firstInital))\(String(describing: lastInital))"
-	   } else {
+	public init(firstName: String, lastName: String, userIcon: Image? = nil, iconSize: CGFloat? = nil) {
+		self.userIcon = userIcon
+
+		if let firstInitial = firstName.first, let lastInitial = lastName.first {
+		   initials = "\(String(describing: firstInitial))\(String(describing: lastInitial))"
+		} else {
 		   initials = ""
-	   }
+		}
+		
+		if let iconSize = iconSize {
+			self.iconSize = iconSize
+		} else {
+	#if os(tvOS)
+			self.iconSize = 150
+	#elseif os(macOS)
+			self.iconSize = 40
+	#else
+			self.iconSize = 50
+	#endif
+		}
    }
 
 	public var body: some View {
@@ -26,22 +39,22 @@ public struct UserIcon: View {
 		   icon
 			   .resizable()
 			   .scaledToFill()
-			   .frame(width: 50, height: 50)
+			   .frame(width: iconSize, height: iconSize)
 			   .clipShape(Circle())
 			   .scaledToFit()
 			#if os(iOS)
 				.foregroundColor(.systemGray2)
 			#else
-				.foregroundColor(.systemGray)
+				.foregroundColor(.gray)
 			#endif
 	   } else {
 		   Circle()
 		   #if os(iOS)
 			   .foregroundColor(.systemGray2)
 		   #else
-			   .foregroundColor(.systemGray)
+			   .foregroundColor(.gray)
 		   #endif
-			   .frame(width: 50, height: 50)
+			   .frame(width: iconSize, height: iconSize)
 			   .overlay(
 				   Text(initials)
 					   .font(.system(.title2, design: .rounded))
