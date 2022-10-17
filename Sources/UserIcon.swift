@@ -24,13 +24,7 @@ public struct UserIcon: View {
 		if let iconSize = iconSize {
 			self.iconSize = iconSize
 		} else {
-	#if os(tvOS)
-			self.iconSize = 115
-	#elseif os(macOS)
-			self.iconSize = 38
-	#else
-			self.iconSize = 45
-	#endif
+			self.iconSize = UserIcon.getDefaultIconSize()
 		}
    }
 
@@ -63,6 +57,22 @@ public struct UserIcon: View {
 			   )
 	   }
    }
+}
+
+private extension UserIcon {
+	static func getDefaultIconSize() -> CGFloat {
+#if os(tvOS)
+		return 115
+#elseif os(macOS)
+		return 38
+#else
+		if (Device.Platform.iPad) {
+			return 45
+		} else {
+			return 50
+		}
+#endif
+	}
 }
 
 struct UserIcon_Previews: PreviewProvider {
