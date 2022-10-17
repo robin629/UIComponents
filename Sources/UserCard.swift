@@ -38,8 +38,7 @@ struct UserCard_Previews: PreviewProvider {
 			GeometryReader { g in
 				List {
 					Section {
-						UserCard(firstName: "Example", lastName: "User", userIcon: Image(uiImage: UIImage(
-							contentsOfFile: "/Users/robinisrael/Downloads/TestImage")!))
+						UserCard(firstName: "Example", lastName: "User")
 						UserCard(firstName: "Robin", lastName: "Israel", userIcon: Image(systemName:  "person.circle.fill"))
 						UserCard(firstName: "Third", lastName: "User")
 					}

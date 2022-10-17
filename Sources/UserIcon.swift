@@ -27,13 +27,21 @@ public struct UserIcon: View {
 			   .resizable()
 			   .scaledToFill()
 			   .frame(width: 50, height: 50)
-			   .foregroundColor(.systemGray2)
 			   .clipShape(Circle())
 			   .scaledToFit()
+			#if os(iOS)
+				.foregroundColor(.systemGray2)
+			#else
+				.foregroundColor(.systemGray)
+			#endif
 	   } else {
 		   Circle()
-			   .frame(width: 50, height: 50)
+		   #if os(iOS)
 			   .foregroundColor(.systemGray2)
+		   #else
+			   .foregroundColor(.systemGray)
+		   #endif
+			   .frame(width: 50, height: 50)
 			   .overlay(
 				   Text(initials)
 					   .font(.system(.title2, design: .rounded))
@@ -46,8 +54,7 @@ public struct UserIcon: View {
 
 struct UserIcon_Previews: PreviewProvider {
 	static var previews: some View {
-		UserIcon(firstName: "Robin", lastName: "Israel", userIcon: Image(uiImage: UIImage(
-			contentsOfFile: "/Users/robinisrael/Downloads/TestImage")!))
-			.previewLayout(.sizeThatFits)
+		UserIcon(firstName: "Robin", lastName: "Israel")
+			.previewLayout(.device)
 	}
 }
