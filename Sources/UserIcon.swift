@@ -25,11 +25,11 @@ public struct UserIcon: View {
 			self.iconSize = iconSize
 		} else {
 	#if os(tvOS)
-			self.iconSize = 150
+			self.iconSize = 115
 	#elseif os(macOS)
-			self.iconSize = 40
+			self.iconSize = 38
 	#else
-			self.iconSize = 50
+			self.iconSize = 45
 	#endif
 		}
    }
@@ -56,10 +56,10 @@ public struct UserIcon: View {
 		   #endif
 			   .frame(width: iconSize, height: iconSize)
 			   .overlay(
-				   Text(initials)
-					   .font(.system(.title2, design: .rounded))
-					   .foregroundColor(.white)
-					   .scaledToFit()
+					Text(initials)
+						.font(.system(.title2, design: .rounded))
+						.foregroundColor(.white)
+						.scaledToFit()
 			   )
 	   }
    }
@@ -67,7 +67,12 @@ public struct UserIcon: View {
 
 struct UserIcon_Previews: PreviewProvider {
 	static var previews: some View {
-		UserIcon(firstName: "Robin", lastName: "Israel")
-			.previewLayout(.device)
+		List {
+			Section {
+				UserIcon(firstName: "Robin", lastName: "Israel")
+			}
+			
+			Text("Example Row")
+		}
 	}
 }
