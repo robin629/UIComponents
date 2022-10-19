@@ -59,6 +59,16 @@ public struct UserIcon: View {
    }
 }
 
+public extension UserIcon {
+	func iconSize(_ size: CGFloat) -> some View {
+		var newView = self
+		
+		newView.iconSize = size
+		
+		return newView
+	}
+}
+
 private extension UserIcon {
 	static func getDefaultIconSize() -> CGFloat {
 #if os(tvOS)
@@ -80,6 +90,9 @@ struct UserIcon_Previews: PreviewProvider {
 		List {
 			Section {
 				UserIcon(firstName: "Robin", lastName: "Israel")
+
+				UserIcon(firstName: "Robin", lastName: "Israel")
+					.iconSize(64)
 			}
 			
 			Text("Example Row")
