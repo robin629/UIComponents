@@ -20,12 +20,12 @@ public struct SegmentTab: Hashable, Identifiable {
 
 	public let id = UUID()
 	
-	init() {
+	internal init() {
 		self.name = ""
 		self.view = nil
 	}
 	
-	init<Content: View>(_ name: String, @ViewBuilder content: @escaping () -> Content) {
+	public init<Content: View>(_ name: String, @ViewBuilder content: @escaping () -> Content) {
 		self.name = name
 		self.view = AnyView(content())
 	}
@@ -44,7 +44,7 @@ public struct SegmentTabView: View {
 	
 	@State private var selectedTab: SegmentTab = .init()
 
-	init(@SegmentTabViewBuilder content: @escaping () -> [SegmentTab]) {
+	public init(@SegmentTabViewBuilder content: @escaping () -> [SegmentTab]) {
 		self.tabList = content()
 	}
 
