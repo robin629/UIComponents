@@ -30,6 +30,11 @@ public struct SegmentTab: Hashable, Identifiable {
 		self.view = AnyView(content())
 	}
 	
+	public init<Content: View>(_ name: String, content: Content) {
+		self.name = name
+		self.view = AnyView(content)
+	}
+	
 	public static func == (lhs: SegmentTab, rhs: SegmentTab) -> Bool {
 		return lhs.name == rhs.name
 	}
@@ -77,26 +82,11 @@ struct SwiftUIView_Previews: PreviewProvider {
 
 		var body: some View {
 			SegmentTabView {
-				SegmentTab("Test 0") {
-					Text("Test View 0")
+				SegmentTab("Tab 1") {
+					Text("Tab View 1")
 				}
 
-				SegmentTab("Test 1") {
-					List {
-						Text("Test View 1")
-					}
-				}
-
-				SegmentTab("Picker") {
-					Picker("", selection: $selection) {
-						Text("Option 0")
-							.tag(0)
-						Text("Option 1")
-							.tag(1)
-					}.pickerStyle(.segmented)
-
-					Text("Tag: \(selection)")
-				}
+				SegmentTab("Tab 2", content: Text("Tab View 2"))
 			}
 		}
 	}
