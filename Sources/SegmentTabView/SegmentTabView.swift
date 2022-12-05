@@ -58,11 +58,10 @@ public struct SegmentTabView: View {
 			}
 			.pickerStyle(.segmented)
 			.padding([.horizontal])
-			
-			Spacer()
 
 			selectedTab.view
 		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		.onAppear {
 			if (tabList.count > 0) {
 				selectedTab = tabList[0]
@@ -74,14 +73,29 @@ public struct SegmentTabView: View {
 #if DEBUG
 struct SwiftUIView_Previews: PreviewProvider {
 	struct Preview: View {
+		@State private var selection: Int = 0
+
 		var body: some View {
 			SegmentTabView {
 				SegmentTab("Test 0") {
 					Text("Test View 0")
 				}
-				
+
 				SegmentTab("Test 1") {
-					Text("Test View 1")
+					List {
+						Text("Test View 1")
+					}
+				}
+
+				SegmentTab("Picker") {
+					Picker("", selection: $selection) {
+						Text("Option 0")
+							.tag(0)
+						Text("Option 1")
+							.tag(1)
+					}.pickerStyle(.segmented)
+
+					Text("Tag: \(selection)")
 				}
 			}
 		}
