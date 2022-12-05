@@ -8,7 +8,7 @@
 import SwiftUI
 
 @resultBuilder
-private struct SegmentTabViewBuilder {
+public struct SegmentTabViewBuilder {
 	static func buildBlock(_ components: SegmentTab...) -> [SegmentTab] {
 		return components
 	}
