@@ -17,7 +17,8 @@ public struct TileGrid<Content>: View where Content: View {
     public var body: some View {
 		VStack(alignment: .leading) {
 			content()
-		}.frame(maxWidth: .infinity, alignment: .leading)
+		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
     }
 }
 
@@ -27,14 +28,12 @@ struct TileGrid_Previews: PreviewProvider {
 			TileGrid {
 				TileGridSection(header: "System") {
 					Tile {
-						
+						Text("System - Tile 0")
 					}
 				}
 				
-				TileGridSection(header: "Partition") {
-					Tile {
-						
-					}
+				Tile {
+					Text("Tile 0")
 				}
 			}
 		}

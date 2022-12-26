@@ -22,9 +22,17 @@ struct Tile<Content>: View where Content: View {
 }
 
 struct Tile_Previews: PreviewProvider {
-	static var previews: some View {
-		Tile {
-			
+	struct Preview: View {
+		var body: some View {
+			TileGrid {
+				Tile {
+					Text("Tile Example")
+				}
+			}
 		}
+	}
+
+	static var previews: some View {
+		Preview()
 	}
 }
