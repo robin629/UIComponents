@@ -15,7 +15,7 @@ public class Device {
 	
 	// MARK: Device Platform Types
 	
-	class Platform {
+	public class Platform {
 		public static var iPhone: Bool {
 			return .phone == UIDevice.current.userInterfaceIdiom
 		}
@@ -64,7 +64,7 @@ public class Device {
 
 	// MARK: Device Platform Types
 	
-	class Platform {
+	public class Platform {
 		public static var iPhone: Bool {
 			return false
 		}
