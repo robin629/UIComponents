@@ -76,7 +76,7 @@ private extension UserIcon {
 #elseif os(macOS)
 		return 38
 #else
-		if (Device.Platform.iPad) {
+		if (UIDeviceInfo.Platform.iPad) {
 			return 45
 		} else {
 			return 50

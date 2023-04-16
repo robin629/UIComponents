@@ -78,7 +78,7 @@ struct UserCard_Previews: PreviewProvider {
 					
 					Text("Example Row")
 				}
-				.if (Device.Platform.iPad) { myView in
+				.if (UIDeviceInfo.Platform.iPad) { myView in
 					myView.padding(.horizontal, g.size.width/8)
 				}
 				
