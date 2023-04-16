@@ -15,7 +15,7 @@ public struct LargeButton: ButtonStyle {
 			.background(Color.accentColor)
 			.foregroundColor(Color.white)
 			.cornerRadius(10)
-			.padding(.horizontal, 40)
+            .padding(.horizontal, UIDeviceInfo.Platform.iPhone ? 40 : 100)
 	}
 }
 
