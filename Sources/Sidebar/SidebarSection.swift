@@ -26,12 +26,12 @@ public struct SidebarSection<Content, Header, Footer>: View where Content: View,
 		Section {
 			content()
 		} header: {
-			if let label = self.header {
-				label()
+			if let label = self.header() {
+				label
 			}
 		} footer: {
-			if let label = self.footer {
-				label()
+			if let label = self.footer() {
+				label
 			}
 		}
 		
