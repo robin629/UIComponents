@@ -8,14 +8,32 @@
 import SwiftUI
 
 public struct LargeButton: ButtonStyle {
+	private let textColor: Color
+	private let color:     Color
+	
+	public init() {
+		self.textColor = .white
+		self.color     = .accentColor
+	}
+	
+	public init(_ color: Color) {
+		self.textColor = .white
+		self.color     = color
+	}
+	
+	public init(color: Color, textColor: Color) {
+		self.textColor = color
+		self.color     = color
+	}
+
 	public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.padding(15)
 			.frame(maxWidth: .infinity)
-			.background(Color.accentColor)
-			.foregroundColor(Color.white)
+			.background(self.color)
+			.foregroundColor(self.textColor)
 			.cornerRadius(10)
-            .padding(.horizontal, UIDeviceInfo.Platform.iPhone ? 40 : 100)
+			.padding(.horizontal, UIDeviceInfo.Platform.iPhone ? 40 : 100)
 	}
 }
 
