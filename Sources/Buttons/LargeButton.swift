@@ -27,13 +27,13 @@ public struct LargeButton: ButtonStyle {
 	}
 
 	public func makeBody(configuration: Configuration) -> some View {
-		configuration.label
-			.padding(15)
-			.frame(maxWidth: .infinity)
-			.background(self.color)
-			.foregroundColor(self.textColor)
-			.cornerRadius(10)
-			.padding(.horizontal, UIDeviceInfo.Platform.iPhone ? 40 : 100)
+        configuration.label
+            .frame(maxWidth: .infinity)
+            .padding(10)
+            .background(self.color)
+            .foregroundColor(self.textColor)
+            .cornerRadius(10)
+            .frame(width: UIDeviceInfo.Platform.iPhone ? 310 : 350)
 	}
 }
 
