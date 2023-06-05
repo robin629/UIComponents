@@ -101,6 +101,22 @@ public class UIDeviceInfo {
 #endif
         }
     }
+    
+    // MARK: Device Orientations
+    
+    public class Orientation {
+        public static var isPortrait: Bool {
+            return false
+        }
+
+        public static var isLandscape: Bool {
+            return true
+        }
+        
+        public static var isFLat: Bool {
+            return false
+        }
+    }
 }
 
 #endif
