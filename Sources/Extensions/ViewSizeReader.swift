@@ -18,6 +18,9 @@ public struct ViewSizeReader: ViewModifier {
                         .onAppear {
                             self.size = proxy.size
                         }
+                        .onChange(of: proxy.size) {
+                            self.size = $0
+                        }
                 }
             )
     }
