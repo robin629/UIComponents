@@ -30,8 +30,8 @@ public struct LargeButton: ButtonStyle {
         configuration.label
             .frame(maxWidth: .infinity)
             .padding(10)
-            .background(self.color)
-            .foregroundColor(self.textColor)
+            .background(configuration.isPressed ? self.color.opacity(0.7) : self.color)
+            .foregroundColor(configuration.isPressed ? self.textColor.opacity(0.7) : self.textColor)
             .cornerRadius(10)
             .frame(width: UIDeviceInfo.Platform.iPhone ? 310 : 350)
 	}
