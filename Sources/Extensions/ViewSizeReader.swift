@@ -16,10 +16,14 @@ public struct ViewSizeReader: ViewModifier {
                 GeometryReader { proxy in
                     Color.clear
                         .onAppear {
-                            self.size = proxy.size
+                            DispatchQueue.main.async {
+                                self.size = proxy.size
+                            }
                         }
-                        .onChange(of: proxy.size) {
-                            self.size = $0
+                        .onChange(of: proxy.size) { newValue in
+                            DispatchQueue.main.async {
+                                self.size = newValue
+                            }
                         }
                 }
             )
