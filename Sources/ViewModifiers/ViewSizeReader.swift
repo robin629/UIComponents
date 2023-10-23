@@ -30,8 +30,8 @@ public struct ViewSizeReader: ViewModifier {
     }
 }
 
-public extension View {
-    func readViewSize(_ size: Binding<CGSize>) -> some View {
+extension View {
+    public func readViewSize(_ size: Binding<CGSize>) -> some View {
         modifier(ViewSizeReader(size: size))
     }
 }
