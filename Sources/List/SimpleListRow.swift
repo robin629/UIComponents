@@ -7,31 +7,31 @@
 
 import SwiftUI
 
-public struct SimpleListRow: View {
+public struct ListRow: View {
     private let icon:     Image?
     private let title:    String
     private let subTitle: String?
-    private let info:     String?
+    private let detail:     String?
     
     public init(_ title: String) {
         self.icon     = nil
         self.title    = title
         self.subTitle = nil
-        self.info     = nil
+        self.detail	  = nil
     }
     
     public init(_ title: String, systemName: String) {
         self.icon     = Image(systemName: systemName)
         self.title    = title
         self.subTitle = nil
-        self.info     = nil
+        self.detail	  = nil
     }
     
     public init(_ title: String, icon: Image) {
         self.icon     = icon
         self.title    = title
         self.subTitle = nil
-        self.info     = nil
+        self.detail	  = nil
     }
 
     
@@ -39,97 +39,95 @@ public struct SimpleListRow: View {
         self.icon     = nil
         self.title    = title
         self.subTitle = subTitle
-        self.info     = nil
+        self.detail	  = nil
     }
     
     public init(_ title: String, subTitle: String, systemName: String) {
         self.icon     = Image(systemName: systemName)
         self.title    = title
         self.subTitle = subTitle
-        self.info     = nil
+        self.detail	  = nil
     }
     
     public init(_ title: String, subTitle: String, icon: Image) {
         self.icon     = icon
         self.title    = title
         self.subTitle = subTitle
-        self.info     = nil
+        self.detail	  = nil
     }
     
-    public init(_ title: String, info: String) {
+    public init(_ title: String, detail: String) {
         self.icon     = nil
         self.title    = title
         self.subTitle = nil
-        self.info     = info
+        self.detail	  = detail
     }
     
-    public init(_ title: String, subTitle: String, info: String) {
+    public init(_ title: String, subTitle: String, detail: String) {
         self.icon     = nil
         self.title    = title
         self.subTitle = subTitle
-        self.info     = info
+        self.detail	  = detail
     }
     
-    public init(_ title: String, subTitle: String, info: String, systemName: String) {
+    public init(_ title: String, subTitle: String, detail: String, systemName: String) {
         self.icon     = Image(systemName: systemName)
         self.title    = title
         self.subTitle = subTitle
-        self.info     = info
+        self.detail	  = detail
     }
     
-    public init(_ title: String, subTitle: String, info: String, icon: Image) {
+    public init(_ title: String, subTitle: String, detail: String, icon: Image) {
         self.icon     = icon
         self.title    = title
         self.subTitle = subTitle
-        self.info     = info
+        self.detail	  = detail
     }
 
     public var body: some View {
-        HStack(alignment: .center) {
-            if let icon = icon {
-                icon
-            }
+		HStack {
+			if let icon = icon {
+				icon
+			}
 
-            VStack(alignment: .leading, spacing: 5) {
-                Text(title)
-                    .foregroundColor(.label)
-                
-                if let subTitle = subTitle {
-                    Text(subTitle)
-                        .foregroundColor(.secondaryLabel)
-                        .font(.caption)
-                }
-            }
-
-            Spacer()
-            
-            if let info = info {
-                Text(info)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .foregroundColor(.secondaryLabel)
-            }
-        }
+			VStack(alignment: .leading) {
+				Text(title)
+				
+				if let subTitle = subTitle {
+					Text(subTitle)
+						.foregroundColor(.secondary)
+						.font(.caption)
+				}
+			}
+			
+			Spacer()
+			
+			if let detail = detail {
+				Text(detail)
+					.foregroundColor(.secondary)
+					.frame(alignment: .trailing)
+			}
+		}
     }
 }
 
-struct SimpleListRow_Previews: PreviewProvider {
+struct ListRow_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             List {
-                SimpleListRow("Row Title", systemName: "gear")
+                ListRow("Row Title", systemName: "gear")
                 
-                SimpleListRow("Row Title", subTitle: "Subtitle")
+				ListRow("Row Title", subTitle: "Subtitle")
                 
-                SimpleListRow("Row Title", info: "Row Info")
+				ListRow("Row Title", detail: "Row Info")
                 
-                SimpleListRow("Row Title", subTitle: "Subtitle", info: "Row Info")
-                SimpleListRow("Row Title", subTitle: "Subtitle", info: "Row Info")
+				ListRow("Row Title", subTitle: "Subtitle", detail: "Row Info")
+				ListRow("Row Title", subTitle: "Subtitle", detail: "Row Info")
                 
-                NavigationLink {
-                    
-                } label: {
-                    SimpleListRow("Row Title", info: "Row Info")
-                }
+				ListRow("Row Title", detail: "Row Info")
+					.navigationLink {
+						Text("View")
+					}
             }
         }
     }
