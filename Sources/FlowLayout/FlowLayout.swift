@@ -9,8 +9,13 @@ import SwiftUI
 
 @available(iOS 16.0, macOS 13.0, *)
 public struct FlowLayout: Layout {
-	public var alignment: Alignment = .center
-	public var spacing: CGFloat = 10
+	public var alignment: Alignment
+	public var spacing: CGFloat
+	
+	public init(alignment: Alignment = .leading, spacing: CGFloat = 10) {
+		self.alignment = alignment
+		self.spacing = spacing
+	}
 	
 	public func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
 		let maxWidth = proposal.replacingUnspecifiedDimensions().width
