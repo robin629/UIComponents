@@ -9,17 +9,17 @@ import SwiftUI
 
 @available(iOS 16.0, macOS 13.0, *)
 public struct FlowLayout: Layout {
-	var alignment: Alignment = .center
-	var spacing: CGFloat = 10
+	public var alignment: Alignment = .center
+	public var spacing: CGFloat = 10
 	
-	func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+	public func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
 		let maxWidth = proposal.replacingUnspecifiedDimensions().width
 		let sizes 	 = subviews.map { $0.sizeThatFits(.unspecified) }
 		
 		return generateLayout(maxWidth: maxWidth, subviewSizes: sizes).containerSize
 	}
 	
-	func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+	public func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
 		let sizes 	= subviews.map { $0.sizeThatFits(.unspecified) }
 		let offsets = generateLayout(maxWidth: bounds.width, subviewSizes: sizes).itemOffsets
 		
