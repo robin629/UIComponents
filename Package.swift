@@ -7,9 +7,9 @@ let package = Package(
     name: "UIComponents",
 
 	platforms: [
-		.iOS(.v14),
-		.tvOS(.v14),
-		.macOS(.v11),
+		.iOS(.v16),
+		.tvOS(.v16),
+		.macOS(.v12),
 		.watchOS(.v7)
 	],
 
