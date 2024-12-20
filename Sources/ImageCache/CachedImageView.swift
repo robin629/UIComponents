@@ -11,8 +11,8 @@ public struct CachedImageView: View {
 	@ObservedObject private var imageCache = ImageCache.shared
 	@State private var imageState: ImageCacheItem = .empty
 	
-	let url: URL?
-	let downloadImage: (URL) async -> ImageCacheItem
+	public let url: URL?
+	public let downloadImage: (URL) async -> ImageCacheItem
 	
 	public var body: some View {
 		GeometryReader { g in
